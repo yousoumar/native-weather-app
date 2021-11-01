@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { APIKEY } from "react-native-dotenv";
+import { Button } from "react-native-elements";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
   StyleSheet,
   Text,
@@ -12,19 +14,24 @@ import {
   TextInput,
   Platform,
   StatusBar,
-  Button,
 } from "react-native";
 import * as Location from "expo-location";
 export default function App() {
   const [data, setData] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(null);
+  const [reload, setReload] = useState(false);
   useEffect(() => {
     setErrorMessage(null);
     setData(null);
-    fetchData();
+    fetchDataOnSearch;
+  }, [reload]);
+  useEffect(() => {
+    setErrorMessage(null);
+    setData(null);
+    fetchDataOnLoad();
   }, []);
-  const fetchData = async () => {
+  const fetchDataOnLoad = async () => {
     try {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
@@ -33,9 +40,23 @@ export default function App() {
       }
       const location = await Location.getCurrentPositionAsync();
       const { latitude, longitude } = location.coords;
-
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lang=fr&units=metric&lat=${latitude}&lon=${longitude}&appid=${APIKEY}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setData(data);
+      } else {
+        throw Error("Something went rong");
+      }
+    } catch (error) {
+      setErrorMessage(error.message + ", please come back later :)");
+    }
+  };
+  const fetchDataOnSearch = async () => {
+    try {
+      const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?lang=fr&units=metric&q=${inputValue}&appid=${APIKEY}`
       );
       if (response.ok) {
         const data = await response.json();
@@ -59,7 +80,7 @@ export default function App() {
 
   if (data) {
     return (
-      <>
+      <SafeAreaProvider>
         <SafeAreaView
           style={{
             backgroundColor: "#1e213a",
@@ -68,7 +89,7 @@ export default function App() {
           <View
             style={{
               flexDirection: "row",
-              padding: 10,
+              padding: 16,
               justifyContent: "space-between",
               marginTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
             }}
@@ -77,16 +98,19 @@ export default function App() {
               style={styles.input}
               placeholder="Entrer le nom d'une ville"
               placeholderTextColor="#a09fb1"
-              value={inputValue}
               onChangeText={(text) => setInputValue(text)}
             />
             <Button
               title="Chercher"
-              style={styles.button}
-              onPress={console.log(inputValue)}
+              buttonStyle={styles.button}
+              onPress={() => {
+                setReload(!reload);
+                fetchDataOnSearch();
+              }}
             />
           </View>
         </SafeAreaView>
+
         <SafeAreaView style={styles.container}>
           <View>
             <Image
@@ -117,7 +141,7 @@ export default function App() {
             </Text>
           </View>
         </SafeAreaView>
-      </>
+      </SafeAreaProvider>
     );
   }
   return (
@@ -156,8 +180,8 @@ const styles = StyleSheet.create({
     color: "white",
   },
   button: {
-    width: "25%",
-    height: "40",
+    height: 40,
+    padding: 10,
     borderRadius: 10,
   },
 });
