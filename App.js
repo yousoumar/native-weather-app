@@ -12,7 +12,7 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState();
   const [inputValue, setInputValue] = useState("");
   const [reload, setReload] = useState(false);
-
+  const [showSearch, setShowSearch] = useState(false);
   useEffect(() => {
     if (!reload) {
       fetchDataOnLoad();
@@ -74,15 +74,29 @@ export default function App() {
       </SafeAreaView>
     );
   }
-  if (data) {
+  if (showSearch) {
     return (
-      <SafeAreaView style={styles.container}>
-        <Nav setInputValue={setInputValue} fetchDataOnLoad={fetchDataOnLoad} />
+      <SafeAreaView
+        style={{ ...styles.container, justifyContent: "flex-start" }}
+      >
         <Search
           inputValue={inputValue}
           setInputValue={setInputValue}
           setReload={setReload}
           reload={reload}
+          setShowSearch={setShowSearch}
+        />
+      </SafeAreaView>
+    );
+  }
+  if (data) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Nav
+          setInputValue={setInputValue}
+          fetchDataOnLoad={fetchDataOnLoad}
+          showSearch={showSearch}
+          setShowSearch={setShowSearch}
         />
         <Details data={data} />
       </SafeAreaView>
