@@ -9,19 +9,18 @@ import Search from "./components/Search";
 import Nav from "./components/Nav";
 export default function App() {
   const [data, setData] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState();
   const [inputValue, setInputValue] = useState("");
   const [reload, setReload] = useState(false);
+
   useEffect(() => {
-    setErrorMessage(null);
-    setData(null);
-    fetchDataOnSearch();
+    if (!reload) {
+      fetchDataOnLoad();
+    } else {
+      fetchDataOnSearch();
+    }
   }, [reload]);
-  useEffect(() => {
-    setErrorMessage(null);
-    setData(null);
-    fetchDataOnLoad();
-  }, []);
+
   const fetchDataOnLoad = async () => {
     try {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -67,6 +66,7 @@ export default function App() {
       );
     }
   };
+
   if (errorMessage) {
     return (
       <SafeAreaView style={styles.container}>
@@ -74,7 +74,6 @@ export default function App() {
       </SafeAreaView>
     );
   }
-
   if (data) {
     return (
       <SafeAreaView style={styles.container}>

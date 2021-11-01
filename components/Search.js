@@ -38,7 +38,6 @@ export default function Search({
 }
 const styles = StyleSheet.create({
   input: {
-    height: 40,
     width: "70%",
     borderWidth: 1,
     padding: 10,
@@ -47,7 +46,6 @@ const styles = StyleSheet.create({
     color: "white",
   },
   button: {
-    height: 40,
     padding: 10,
     borderRadius: 10,
     marginLeft: 18,

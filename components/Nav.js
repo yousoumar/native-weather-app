@@ -36,7 +36,6 @@ export default function Nav({ setInputValue, fetchDataOnLoad }) {
 
 const styles = StyleSheet.create({
   button: {
-    height: 40,
     padding: 10,
     borderRadius: 10,
   },
