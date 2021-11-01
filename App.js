@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { APIKEY } from "react-native-dotenv";
-import { StyleSheet, SafeAreaView, StatusBar } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  ScrollView,
+  View,
+} from "react-native";
 import * as Location from "expo-location";
 import Loader from "./components/Loader";
 import Details from "./components/Details";
 import Error from "./components/Error";
 import Search from "./components/Search";
 import Nav from "./components/Nav";
+
 export default function App() {
   const [data, setData] = useState(null);
   const [errorMessage, setErrorMessage] = useState();
   const [inputValue, setInputValue] = useState("");
   const [reload, setReload] = useState(false);
-
+  const [showSearch, setShowSearch] = useState(false);
   useEffect(() => {
     if (!reload) {
       fetchDataOnLoad();
@@ -69,23 +76,53 @@ export default function App() {
 
   if (errorMessage) {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView
+        style={{
+          ...styles.container,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#1e213a",
+        }}
+      >
         <Error errorMessage={errorMessage} />
       </SafeAreaView>
     );
   }
-  if (data) {
+  if (showSearch) {
     return (
-      <SafeAreaView style={styles.container}>
-        <Nav setInputValue={setInputValue} fetchDataOnLoad={fetchDataOnLoad} />
+      <SafeAreaView
+        style={{
+          ...styles.container,
+          justifyContent: "flex-start",
+          flex: 1,
+          backgroundColor: "#1e213a",
+        }}
+      >
         <Search
           inputValue={inputValue}
           setInputValue={setInputValue}
           setReload={setReload}
           reload={reload}
+          setShowSearch={setShowSearch}
         />
-        <Details data={data} />
       </SafeAreaView>
+    );
+  }
+  if (data) {
+    return (
+      <ScrollView style={styles.container}>
+        <SafeAreaView>
+          <View style={{ backgroundColor: "#1e213a" }}>
+            <Nav
+              setInputValue={setInputValue}
+              fetchDataOnLoad={fetchDataOnLoad}
+              showSearch={showSearch}
+              setShowSearch={setShowSearch}
+            />
+            <Details data={data} />
+          </View>
+        </SafeAreaView>
+      </ScrollView>
     );
   }
   return (
@@ -97,10 +134,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#1e213a",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight + 10 : 0,
+    flex: 1,
   },
 });
