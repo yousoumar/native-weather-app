@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import { APIKEY } from "react-native-dotenv";
-import { Button } from "react-native-elements";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ActivityIndicator,
-  Image,
-  SafeAreaView,
-  TextInput,
-  Platform,
-  StatusBar,
-} from "react-native";
+import { StyleSheet, SafeAreaView, StatusBar } from "react-native";
 import * as Location from "expo-location";
+import Loader from "./components/Loader";
+import Details from "./components/Details";
+import Error from "./components/Error";
+import Search from "./components/Search";
+import Nav from "./components/Nav";
 export default function App() {
   const [data, setData] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -24,7 +15,7 @@ export default function App() {
   useEffect(() => {
     setErrorMessage(null);
     setData(null);
-    fetchDataOnSearch;
+    fetchDataOnSearch();
   }, [reload]);
   useEffect(() => {
     setErrorMessage(null);
@@ -50,7 +41,11 @@ export default function App() {
         throw Error("Something went rong");
       }
     } catch (error) {
-      setErrorMessage(error.message + ", please come back later :)");
+      setErrorMessage(
+        error.message
+          ? error.message + ", please come back later :)"
+          : "Something went rong, , please come back later :)"
+      );
     }
   };
   const fetchDataOnSearch = async () => {
@@ -65,97 +60,38 @@ export default function App() {
         throw Error("Something went rong");
       }
     } catch (error) {
-      setErrorMessage(error.message + ", please come back later :)");
+      setErrorMessage(
+        error.message
+          ? error.message + ", please come back later :)"
+          : "Something went rong, please come back later :)"
+      );
     }
   };
   if (errorMessage) {
     return (
       <SafeAreaView style={styles.container}>
-        <View>
-          <Text style={styles.text}>{errorMessage}</Text>
-        </View>
+        <Error errorMessage={errorMessage} />
       </SafeAreaView>
     );
   }
 
   if (data) {
     return (
-      <SafeAreaProvider>
-        <SafeAreaView
-          style={{
-            backgroundColor: "#1e213a",
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              padding: 16,
-              justifyContent: "space-between",
-              marginTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
-            }}
-          >
-            <TextInput
-              style={styles.input}
-              placeholder="Entrer le nom d'une ville"
-              placeholderTextColor="#a09fb1"
-              onChangeText={(text) => setInputValue(text)}
-              value={inputValue}
-            />
-            <Button
-              title="Chercher"
-              buttonStyle={styles.button}
-              onPress={() => {
-                setReload(!reload);
-                fetchDataOnSearch();
-              }}
-            />
-          </View>
-          <Button
-            title="Météo loacal"
-            buttonStyle={{ ...styles.button, margin: 10 }}
-            onPress={() => {
-              setInputValue("");
-              fetchDataOnLoad();
-            }}
-          />
-        </SafeAreaView>
-
-        <SafeAreaView style={styles.container}>
-          <View>
-            <Image
-              style={styles.tinyLogo}
-              source={{
-                uri: `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`,
-              }}
-            />
-            <Text style={{ ...styles.text, color: "white" }}>
-              <Text style={{ fontSize: 100 }}>
-                {data && Math.trunc(data.main.temp)}
-              </Text>
-              °C
-            </Text>
-          </View>
-
-          <Text style={styles.text}>{data.weather[0].description}</Text>
-          <View
-            style={{
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 20,
-            }}
-          >
-            <FontAwesomeIcon icon={faMapMarkerAlt} size={32} color={"white"} />
-            <Text style={{ ...styles.text, marginTop: 10, fontSize: 20 }}>
-              {data && data.name}
-            </Text>
-          </View>
-        </SafeAreaView>
-      </SafeAreaProvider>
+      <SafeAreaView style={styles.container}>
+        <Nav setInputValue={setInputValue} fetchDataOnLoad={fetchDataOnLoad} />
+        <Search
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          setReload={setReload}
+          reload={reload}
+        />
+        <Details data={data} />
+      </SafeAreaView>
     );
   }
   return (
     <SafeAreaView style={styles.container}>
-      <ActivityIndicator size="large" color="white" />
+      <Loader />
     </SafeAreaView>
   );
 }
@@ -166,31 +102,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#1e213a",
     alignItems: "center",
     justifyContent: "center",
-    color: "white",
-    position: "relative",
-  },
-  text: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 20,
-    color: "#a09fb1",
-  },
-  tinyLogo: {
-    width: 200,
-    height: 100,
-  },
-  input: {
-    height: 40,
-    width: "70%",
-    borderWidth: 1,
-    padding: 10,
-    borderColor: "white",
-    borderRadius: 10,
-    color: "white",
-  },
-  button: {
-    height: 40,
-    padding: 10,
-    borderRadius: 10,
+    paddingTop: Platform.OS == "android" ? StatusBar.currentHeight : 0,
   },
 });
