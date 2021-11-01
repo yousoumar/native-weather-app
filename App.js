@@ -19,7 +19,7 @@ import * as Location from "expo-location";
 export default function App() {
   const [data, setData] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
-  const [inputValue, setInputValue] = useState(null);
+  const [inputValue, setInputValue] = useState("");
   const [reload, setReload] = useState(false);
   useEffect(() => {
     setErrorMessage(null);
@@ -99,6 +99,7 @@ export default function App() {
               placeholder="Entrer le nom d'une ville"
               placeholderTextColor="#a09fb1"
               onChangeText={(text) => setInputValue(text)}
+              value={inputValue}
             />
             <Button
               title="Chercher"
@@ -109,6 +110,14 @@ export default function App() {
               }}
             />
           </View>
+          <Button
+            title="Météo loacal"
+            buttonStyle={{ ...styles.button, margin: 10 }}
+            onPress={() => {
+              setInputValue("");
+              fetchDataOnLoad();
+            }}
+          />
         </SafeAreaView>
 
         <SafeAreaView style={styles.container}>
