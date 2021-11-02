@@ -7,6 +7,8 @@ export default function Nav({
   fetchDataOnLoad,
   setShowSearch,
   showSearch,
+  setData,
+  setErrorMessage,
 }) {
   return (
     <View
@@ -44,7 +46,7 @@ export default function Nav({
         }}
         onPress={() => {
           setInputValue("");
-          fetchDataOnLoad();
+          fetchDataOnLoad(setData, setErrorMessage);
         }}
       >
         <View>
