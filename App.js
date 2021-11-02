@@ -69,15 +69,15 @@ export default function App() {
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
-          <View style={{ backgroundColor: "#1e213a" }}>
-            <Nav
-              setInputValue={setInputValue}
-              fetchDataOnLoad={fetchDataOnLoad}
-              showSearch={showSearch}
-              setShowSearch={setShowSearch}
-            />
-            <Details data={data} />
-          </View>
+          <Nav
+            setInputValue={setInputValue}
+            fetchDataOnLoad={fetchDataOnLoad}
+            showSearch={showSearch}
+            setShowSearch={setShowSearch}
+            setData={setData}
+            setErrorMessage={setErrorMessage}
+          />
+          <Details data={data} />
         </ScrollView>
       </SafeAreaView>
     );
