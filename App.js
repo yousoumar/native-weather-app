@@ -67,8 +67,8 @@ export default function App() {
   }
   if (data) {
     return (
-      <ScrollView style={styles.container}>
-        <SafeAreaView>
+      <SafeAreaView style={styles.container}>
+        <ScrollView>
           <View style={{ backgroundColor: "#1e213a" }}>
             <Nav
               setInputValue={setInputValue}
@@ -78,8 +78,8 @@ export default function App() {
             />
             <Details data={data} />
           </View>
-        </SafeAreaView>
-      </ScrollView>
+        </ScrollView>
+      </SafeAreaView>
     );
   }
   return (
