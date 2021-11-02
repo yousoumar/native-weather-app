@@ -7,17 +7,19 @@ export default function Nav({
   fetchDataOnLoad,
   setShowSearch,
   showSearch,
+  setData,
+  setErrorMessage,
 }) {
   return (
     <View
       style={{
         flexDirection: "row",
         justifyContent: "space-between",
-        backgroundColor: "#1e213a",
+
         width: "100%",
         paddingLeft: 16,
         paddingRight: 16,
-        marginBottom: 16,
+        paddingTop: 16,
       }}
     >
       <Pressable
@@ -44,7 +46,7 @@ export default function Nav({
         }}
         onPress={() => {
           setInputValue("");
-          fetchDataOnLoad();
+          fetchDataOnLoad(setData, setErrorMessage);
         }}
       >
         <View>

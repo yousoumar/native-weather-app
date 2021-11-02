@@ -13,7 +13,6 @@ export default function Search({
       <Pressable
         style={{
           alignSelf: "flex-end",
-          backgroundColor: "hsla(230,5%,45%,.3)",
           marginRight: 16,
           borderRadius: 10,
           paddingRight: 10,
