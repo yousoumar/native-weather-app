@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 export default function Error({ errorMessage }) {
   return (
-    <View>
+    <View style={{ marginTop: 200 }}>
       <Text style={styles.text}>{errorMessage}</Text>
     </View>
   );

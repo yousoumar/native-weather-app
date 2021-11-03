@@ -5,7 +5,7 @@ import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 export default function Highlight({ windSpeed }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
-      <Text style={styles.text}>Vitesse du vent</Text>
+      <Text style={styles.text}>Wind</Text>
       <View
         style={{
           flexDirection: "row",

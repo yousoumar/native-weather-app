@@ -4,10 +4,8 @@ export default function Loader() {
   return (
     <View
       style={{
-        flex: 1,
-        backgroundColor: "#1e213a",
-        alignItems: "center",
-        justifyContent: "center",
+        alignSelf: "center",
+        marginTop: 200,
       }}
     >
       <ActivityIndicator size="large" color="white" />

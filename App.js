@@ -6,36 +6,18 @@ import Details from "./components/Details";
 import Error from "./components/Error";
 import Search from "./components/Search";
 import Nav from "./components/Nav";
-import { fetchDataOnSearch, fetchDataOnLoad } from "./hooks/DataFetch";
+import { fetchDataOnLoad } from "./hooks/DataFetch";
 
 export default function App() {
   const [data, setData] = useState(null);
   const [errorMessage, setErrorMessage] = useState();
   const [inputValue, setInputValue] = useState("");
-  const [reload, setReload] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    if (!reload) {
-      fetchDataOnLoad(setData, setErrorMessage);
-    } else {
-      fetchDataOnSearch(setData, setErrorMessage, inputValue);
-    }
-  }, [reload]);
+    fetchDataOnLoad(setData, setErrorMessage, setLoading);
+  }, []);
 
-  if (errorMessage) {
-    return (
-      <SafeAreaView
-        style={{
-          ...styles.container,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#1e213a",
-        }}
-      >
-        <Error errorMessage={errorMessage} />
-      </SafeAreaView>
-    );
-  }
   if (showSearch) {
     return (
       <SafeAreaView
@@ -49,33 +31,35 @@ export default function App() {
         <Search
           inputValue={inputValue}
           setInputValue={setInputValue}
-          setReload={setReload}
-          reload={reload}
           setShowSearch={setShowSearch}
+          setData={setData}
+          setErrorMessage={setErrorMessage}
+          setLoading={setLoading}
         />
       </SafeAreaView>
     );
   }
-  if (data) {
-    return (
-      <SafeAreaView style={styles.container}>
-        <ScrollView>
-          <Nav
-            setInputValue={setInputValue}
-            fetchDataOnLoad={fetchDataOnLoad}
-            showSearch={showSearch}
-            setShowSearch={setShowSearch}
-            setData={setData}
-            setErrorMessage={setErrorMessage}
-          />
-          <Details data={data} />
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <Loader />
+      <ScrollView>
+        <Nav
+          setInputValue={setInputValue}
+          fetchDataOnLoad={fetchDataOnLoad}
+          showSearch={showSearch}
+          setShowSearch={setShowSearch}
+          setData={setData}
+          setLoading={setLoading}
+          setErrorMessage={setErrorMessage}
+        />
+        {loading ? (
+          <Loader />
+        ) : errorMessage ? (
+          <Error errorMessage={errorMessage} />
+        ) : (
+          <Details data={data} />
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 }

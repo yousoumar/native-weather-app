@@ -1,12 +1,13 @@
 import React from "react";
 import { View, StyleSheet, TextInput, Pressable, Text } from "react-native";
-
+import { fetchDataOnSearch } from "../hooks/DataFetch";
 export default function Search({
   inputValue,
   setInputValue,
-  setReload,
-  reload,
   setShowSearch,
+  setData,
+  setErrorMessage,
+  setLoading,
 }) {
   return (
     <View>
@@ -53,8 +54,14 @@ export default function Search({
           }}
           onPress={() => {
             if (inputValue.trim() !== "") {
-              setReload(!reload);
               setShowSearch(false);
+              setLoading(true);
+              fetchDataOnSearch(
+                setData,
+                setErrorMessage,
+                inputValue,
+                setLoading
+              );
             }
           }}
         >

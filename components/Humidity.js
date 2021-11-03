@@ -5,7 +5,7 @@ import { faTint } from "@fortawesome/free-solid-svg-icons";
 export default function Humidity({ humidity }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
-      <Text style={styles.text}>Humidité</Text>
+      <Text style={styles.text}>Humidity</Text>
       <View
         style={{
           flexDirection: "row",

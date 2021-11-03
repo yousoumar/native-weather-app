@@ -5,7 +5,7 @@ import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 export default function Visibility({ visibility }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
-      <Text style={styles.text}>Visibilité</Text>
+      <Text style={styles.text}>Visibility</Text>
       <View
         style={{
           flexDirection: "row",

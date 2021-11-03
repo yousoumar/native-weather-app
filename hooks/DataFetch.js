@@ -3,27 +3,29 @@ import { APIKEY } from "react-native-dotenv";
 export const fetchDataOnSearch = async (
   setData,
   setErrorMessage,
-  inputValue
+  inputValue,
+  setLoading
 ) => {
+  setErrorMessage(false);
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lang=fr&units=metric&q=${inputValue}&appid=${APIKEY}`
+      `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${inputValue}&appid=${APIKEY}`
     );
     if (response.ok) {
       const data = await response.json();
       setData(data);
+      setLoading(false);
     } else {
-      throw Error("Something went rong");
+      setLoading(false);
+      setErrorMessage("Something went rong, please check your search input :)");
+      return;
     }
   } catch (error) {
-    setErrorMessage(
-      error.message
-        ? error.message + ", please come back later :)"
-        : "Something went rong, please come back later :)"
-    );
+    setLoading(false);
+    setErrorMessage(error.message + ", please come back later :)");
   }
 };
-export const fetchDataOnLoad = async (setData, setErrorMessage) => {
+export const fetchDataOnLoad = async (setData, setErrorMessage, setLoading) => {
   try {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
@@ -33,15 +35,18 @@ export const fetchDataOnLoad = async (setData, setErrorMessage) => {
     const location = await Location.getCurrentPositionAsync();
     const { latitude, longitude } = location.coords;
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lang=fr&units=metric&lat=${latitude}&lon=${longitude}&appid=${APIKEY}`
+      `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${APIKEY}`
     );
     if (response.ok) {
       const data = await response.json();
       setData(data);
+      setLoading(false);
     } else {
+      setLoading(false);
       throw Error("Something went rong");
     }
   } catch (error) {
+    setLoading(false);
     setErrorMessage(error.message + " , please come back later :)");
   }
 };

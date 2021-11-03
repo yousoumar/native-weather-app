@@ -5,7 +5,7 @@ import { faStopwatch20 } from "@fortawesome/free-solid-svg-icons";
 export default function Pressure({ pressure }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
-      <Text style={styles.text}>Pression</Text>
+      <Text style={styles.text}>Pressure</Text>
       <View
         style={{
           flexDirection: "row",
