@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from "react";
-
-import {
-  StyleSheet,
-  SafeAreaView,
-  StatusBar,
-  ScrollView,
-  View,
-} from "react-native";
+import { StyleSheet, SafeAreaView, StatusBar, ScrollView } from "react-native";
 
 import Loader from "./components/Loader";
 import Details from "./components/Details";
 import Error from "./components/Error";
 import Search from "./components/Search";
 import Nav from "./components/Nav";
-import {
-  fetchDataOnSearch,
-  fetchDataOnLoad,
-} from "./components/hooks/DataFetch";
+import { fetchDataOnSearch, fetchDataOnLoad } from "./hooks/DataFetch";
+
 export default function App() {
   const [data, setData] = useState(null);
   const [errorMessage, setErrorMessage] = useState();

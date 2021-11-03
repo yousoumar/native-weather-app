@@ -50,21 +50,23 @@ export default function Details({ data }) {
           {data && data.name}
         </Text>
       </View>
-      <View style={{ backgroundColor: "black", marginTop: 100, width: "100%" }}>
-        <Text
-          style={{
-            ...styles.text,
-            fontWeight: "bold",
-            fontSize: 30,
-            marginTop: 16,
-          }}
-        >
-          Les points forts
-        </Text>
-        <Wind windSpeed={data.wind.speed} />
-        <Visibility visibility={data.visibility * 0.001} />
-        <Humidity humidity={data.main.humidity} />
-        <Pressure pressure={data.main.pressure} />
+      <View
+        style={{
+          backgroundColor: "black",
+          marginTop: 100,
+          width: "100%",
+          borderTopLeftRadius: 10,
+          borderTopRightRadius: 10,
+        }}
+      >
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Wind windSpeed={data.wind.speed} />
+          <Visibility visibility={data.visibility * 0.001} />
+        </View>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Humidity humidity={data.main.humidity} />
+          <Pressure pressure={data.main.pressure} />
+        </View>
       </View>
     </View>
   );
