@@ -6,7 +6,7 @@ import Details from "./components/Details";
 import Error from "./components/Error";
 import Search from "./components/Search";
 import Nav from "./components/Nav";
-import { fetchDataOnLoad } from "./hooks/DataFetch";
+import useFetchDataOnLoad from "./hooks/useFetchDataOnLoad";
 
 export default function App() {
   const [data, setData] = useState(null);
@@ -15,7 +15,7 @@ export default function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetchDataOnLoad(setData, setErrorMessage, setLoading);
+    useFetchDataOnLoad(setData, setErrorMessage, setLoading);
   }, []);
 
   if (showSearch) {
@@ -45,7 +45,7 @@ export default function App() {
       <ScrollView>
         <Nav
           setInputValue={setInputValue}
-          fetchDataOnLoad={fetchDataOnLoad}
+          useFetchDataOnLoad={useFetchDataOnLoad}
           showSearch={showSearch}
           setShowSearch={setShowSearch}
           setData={setData}

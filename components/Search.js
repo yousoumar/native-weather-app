@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, TextInput, Pressable, Text } from "react-native";
-import { fetchDataOnSearch } from "../hooks/DataFetch";
+import useFetchDataOnSearch from "../hooks/useFetchDataOnSearch";
 export default function Search({
   inputValue,
   setInputValue,
@@ -56,7 +56,7 @@ export default function Search({
             if (inputValue.trim() !== "") {
               setShowSearch(false);
               setLoading(true);
-              fetchDataOnSearch(
+              useFetchDataOnSearch(
                 setData,
                 setErrorMessage,
                 inputValue,

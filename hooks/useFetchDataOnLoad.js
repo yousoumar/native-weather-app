@@ -1,35 +1,11 @@
 import * as Location from "expo-location";
 import { APIKEY } from "react-native-dotenv";
-export const fetchDataOnSearch = async (
-  setData,
-  setErrorMessage,
-  inputValue,
-  setLoading
-) => {
-  setErrorMessage(false);
-  try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${inputValue}&appid=${APIKEY}`
-    );
-    if (response.ok) {
-      const data = await response.json();
-      setData(data);
-      setLoading(false);
-    } else {
-      setLoading(false);
-      setErrorMessage("Something went rong, please check your search input :)");
-      return;
-    }
-  } catch (error) {
-    setLoading(false);
-    setErrorMessage(error.message + ", please come back later :)");
-  }
-};
-export const fetchDataOnLoad = async (setData, setErrorMessage, setLoading) => {
+const useFetchDataOnLoad = async (setData, setErrorMessage, setLoading) => {
   try {
     let { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
       setErrorMessage("Location is needed to run the app :)");
+      setLoading(false);
       return;
     }
     const location = await Location.getCurrentPositionAsync();
@@ -50,3 +26,4 @@ export const fetchDataOnLoad = async (setData, setErrorMessage, setLoading) => {
     setErrorMessage(error.message + " , please come back later :)");
   }
 };
+export default useFetchDataOnLoad;

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCompass } from "@fortawesome/free-solid-svg-icons";
 export default function Nav({
   setInputValue,
-  fetchDataOnLoad,
+  useFetchDataOnLoad,
   setShowSearch,
   showSearch,
   setData,
@@ -49,7 +49,7 @@ export default function Nav({
           setInputValue("");
           setLoading(true);
           setErrorMessage(false);
-          fetchDataOnLoad(setData, setErrorMessage, setLoading);
+          useFetchDataOnLoad(setData, setErrorMessage, setLoading);
         }}
       >
         <View>
