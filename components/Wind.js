@@ -20,8 +20,6 @@ export default function Wind({ windSpeed }) {
       <View
         style={{
           padding: 10,
-          borderRadius: 50,
-          backgroundColor: "hsla(230,5%,45%,.3)",
           marginTop: 10,
         }}
       >
