@@ -54,8 +54,6 @@ export default function Details({ data }) {
           backgroundColor: "black",
           marginTop: 100,
           width: "100%",
-          borderTopLeftRadius: 10,
-          borderTopRightRadius: 10,
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
