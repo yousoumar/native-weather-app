@@ -12,7 +12,7 @@ export default function Details({ data }) {
       style={{
         alignItems: "center",
         justifyContent: "center",
-        paddingTop: 100,
+        paddingTop: 50,
         width: "100%",
       }}
     >
@@ -54,6 +54,7 @@ export default function Details({ data }) {
           backgroundColor: "black",
           marginTop: 50,
           width: "100%",
+          paddingHorizontal: 16,
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
