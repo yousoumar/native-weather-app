@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faStopwatch20 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 export default function Pressure({ pressure }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
@@ -25,7 +24,7 @@ export default function Pressure({ pressure }) {
           marginTop: 10,
         }}
       >
-        <FontAwesomeIcon icon={faStopwatch20} size={25} color={"white"} />
+        <FontAwesome5 name="stopwatch-20" size={25} color={"white"} />
       </View>
     </View>
   );

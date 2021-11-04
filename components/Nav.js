@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Pressable, Text } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faCompass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 export default function Nav({
   setInputValue,
   useFetchDataOnLoad,
@@ -53,7 +52,7 @@ export default function Nav({
         }}
       >
         <View>
-          <FontAwesomeIcon icon={faCompass} size={22} color={"white"} />
+          <FontAwesome5 name={"compass"} size={22} color="white" />
         </View>
       </Pressable>
     </View>

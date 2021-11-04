@@ -1,7 +1,6 @@
 import React from "react";
-import { View, Image, Text, StyleSheet, ImageBackground } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import { View, Image, Text, StyleSheet } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 import Wind from "./Wind";
 import Visibility from "./Visibility";
 import Humidity from "./Humidity";
@@ -45,7 +44,7 @@ export default function Details({ data }) {
           marginTop: 20,
         }}
       >
-        <FontAwesomeIcon icon={faMapMarkerAlt} size={32} color={"white"} />
+        <FontAwesome5 name="map-marker-alt" size={32} color="white" />
         <Text style={{ ...styles.text, marginTop: 10 }}>
           {data && data.name}
         </Text>

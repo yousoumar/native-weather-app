@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
-export default function Highlight({ windSpeed }) {
+import { FontAwesome5 } from "@expo/vector-icons";
+
+export default function Wind({ windSpeed }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
       <Text style={styles.text}>Wind</Text>
@@ -25,7 +25,7 @@ export default function Highlight({ windSpeed }) {
           marginTop: 10,
         }}
       >
-        <FontAwesomeIcon icon={faLocationArrow} size={25} color={"white"} />
+        <FontAwesome5 name="location-arrow" size={25} color={"white"} />
       </View>
     </View>
   );

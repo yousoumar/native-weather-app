@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faTint } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+
 export default function Humidity({ humidity }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
@@ -25,7 +25,7 @@ export default function Humidity({ humidity }) {
           marginTop: 10,
         }}
       >
-        <FontAwesomeIcon icon={faTint} size={25} color={"white"} />
+        <FontAwesome5 name="tint" size={25} color={"white"} />
       </View>
     </View>
   );

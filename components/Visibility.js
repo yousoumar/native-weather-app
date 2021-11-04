@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 export default function Visibility({ visibility }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
@@ -25,7 +24,7 @@ export default function Visibility({ visibility }) {
           marginTop: 10,
         }}
       >
-        <FontAwesomeIcon icon={faEyeSlash} size={25} color={"white"} />
+        <FontAwesome5 name="eye-slash" size={25} color={"white"} />
       </View>
     </View>
   );
