@@ -13,7 +13,7 @@ export default function Pressure({ pressure }) {
           marginTop: 20,
         }}
       >
-        <Text style={{ ...styles.text, fontSize: 45 }}>{pressure}</Text>
+        <Text style={{ ...styles.text, fontSize: 35 }}>{pressure}</Text>
         <Text style={styles.text}>hPa</Text>
       </View>
       <View

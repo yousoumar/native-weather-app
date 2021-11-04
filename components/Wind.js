@@ -14,7 +14,7 @@ export default function Wind({ windSpeed }) {
           marginTop: 20,
         }}
       >
-        <Text style={{ ...styles.text, fontSize: 45 }}>{windSpeed}</Text>
+        <Text style={{ ...styles.text, fontSize: 35 }}>{windSpeed}</Text>
         <Text style={styles.text}>m/s</Text>
       </View>
       <View

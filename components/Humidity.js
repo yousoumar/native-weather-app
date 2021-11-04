@@ -14,7 +14,7 @@ export default function Humidity({ humidity }) {
           marginTop: 20,
         }}
       >
-        <Text style={{ ...styles.text, fontSize: 45 }}>{humidity}</Text>
+        <Text style={{ ...styles.text, fontSize: 35 }}>{humidity}</Text>
         <Text style={styles.text}>%</Text>
       </View>
       <View

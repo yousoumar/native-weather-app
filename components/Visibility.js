@@ -13,7 +13,7 @@ export default function Visibility({ visibility }) {
           marginTop: 20,
         }}
       >
-        <Text style={{ ...styles.text, fontSize: 45 }}>{visibility}</Text>
+        <Text style={{ ...styles.text, fontSize: 35 }}>{visibility}</Text>
         <Text style={styles.text}>km</Text>
       </View>
       <View

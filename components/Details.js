@@ -52,7 +52,7 @@ export default function Details({ data }) {
       <View
         style={{
           backgroundColor: "black",
-          marginTop: 100,
+          marginTop: 50,
           width: "100%",
         }}
       >
