@@ -4,7 +4,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 export default function Visibility({ visibility }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
-      <Text style={styles.text}>Visibility</Text>
+      <Text style={styles.text}>Visibilité</Text>
       <View
         style={{
           flexDirection: "row",

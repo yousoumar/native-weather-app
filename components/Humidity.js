@@ -5,7 +5,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 export default function Humidity({ humidity }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
-      <Text style={styles.text}>Humidity</Text>
+      <Text style={styles.text}>Humidité</Text>
       <View
         style={{
           flexDirection: "row",

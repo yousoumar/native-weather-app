@@ -8,7 +8,7 @@ const useFetchDataOnSearch = async (
   setErrorMessage(false);
   try {
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${inputValue}&appid=${APIKEY}`
+      `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${inputValue}&appid=${APIKEY}&lang=fr`
     );
     if (response.ok) {
       const data = await response.json();

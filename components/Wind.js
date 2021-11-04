@@ -5,7 +5,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 export default function Wind({ windSpeed }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
-      <Text style={styles.text}>Wind</Text>
+      <Text style={styles.text}>Vent</Text>
       <View
         style={{
           flexDirection: "row",

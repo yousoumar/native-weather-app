@@ -4,7 +4,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 export default function Pressure({ pressure }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
-      <Text style={styles.text}>Pressure</Text>
+      <Text style={styles.text}>Pression</Text>
       <View
         style={{
           flexDirection: "row",

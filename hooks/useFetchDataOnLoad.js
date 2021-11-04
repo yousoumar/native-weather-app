@@ -11,7 +11,7 @@ const useFetchDataOnLoad = async (setData, setErrorMessage, setLoading) => {
     const location = await Location.getCurrentPositionAsync();
     const { latitude, longitude } = location.coords;
     const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${APIKEY}`
+      `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${APIKEY}&lang=fr`
     );
     if (response.ok) {
       const data = await response.json();
