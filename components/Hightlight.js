@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-export default function Visibility({ visibility }) {
+
+export default function Hightlight({ title, data, unit, icon }) {
   return (
     <View style={{ ...styles.container, alignItems: "center" }}>
-      <Text style={styles.text}>Visibilité</Text>
+      <Text style={styles.text}>{title}</Text>
       <View
         style={{
           flexDirection: "row",
@@ -13,16 +13,17 @@ export default function Visibility({ visibility }) {
           marginTop: 20,
         }}
       >
-        <Text style={{ ...styles.text, fontSize: 35 }}>{visibility}</Text>
-        <Text style={styles.text}>km</Text>
+        <Text style={{ ...styles.text, fontSize: 35 }}>{data}</Text>
+        <Text style={styles.text}>{unit}</Text>
       </View>
       <View
         style={{
           padding: 10,
+
           marginTop: 10,
         }}
       >
-        <FontAwesome5 name="eye-slash" size={25} color={"white"} />
+        {icon}
       </View>
     </View>
   );
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     height: 200,
     backgroundColor: "#1e213a",
-    marginTop: 20,
+    marginTop: 10,
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,

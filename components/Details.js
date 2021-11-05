@@ -1,10 +1,7 @@
 import React from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
-import Wind from "./Wind";
-import Visibility from "./Visibility";
-import Humidity from "./Humidity";
-import Pressure from "./Pressure";
+import Hightlight from "./Hightlight";
 
 export default function Details({ data }) {
   return (
@@ -58,12 +55,37 @@ export default function Details({ data }) {
         }}
       >
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Wind windSpeed={data.wind.speed} />
-          <Visibility visibility={data.visibility * 0.001} />
+          <Hightlight
+            icon={
+              <FontAwesome5 name="location-arrow" size={25} color={"white"} />
+            }
+            data={data.wind.speed}
+            unit={"m/s"}
+            title="Vent"
+          />
+          <Hightlight
+            icon={<FontAwesome5 name="eye-slash" size={25} color={"white"} />}
+            data={data.visibility * 0.001}
+            unit="km"
+            title="Visibilité"
+          />
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <Humidity humidity={data.main.humidity} />
-          <Pressure pressure={data.main.pressure} />
+          <Hightlight
+            icon={<FontAwesome5 name="tint" size={25} color={"white"} />}
+            data={data.main.humidity}
+            title="Humidité"
+            unit="%"
+          />
+
+          <Hightlight
+            icon={
+              <FontAwesome5 name="stopwatch-20" size={25} color={"white"} />
+            }
+            data={data.main.humidity}
+            title="Pression"
+            unit="hPa"
+          />
         </View>
       </View>
     </View>
