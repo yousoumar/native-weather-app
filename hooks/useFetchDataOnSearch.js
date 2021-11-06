@@ -16,7 +16,9 @@ const useFetchDataOnSearch = async (
       setLoading(false);
     } else {
       setLoading(false);
-      setErrorMessage("Something went rong, please check your search input :)");
+      setErrorMessage(
+        "La ville que vous cherchez nous travaillons dessus encore, merci d'essayer une autre :)"
+      );
       return;
     }
   } catch (error) {

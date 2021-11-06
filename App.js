@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, StatusBar, ScrollView } from "react-native";
 
 import Loader from "./components/Loader";
-import Details from "./components/Details";
+import Details from "./components/MainInfo";
 import Error from "./components/Error";
 import Search from "./components/Search";
 import Nav from "./components/Nav";
@@ -20,14 +20,7 @@ export default function App() {
 
   if (showSearch) {
     return (
-      <SafeAreaView
-        style={{
-          ...styles.container,
-          justifyContent: "flex-start",
-          flex: 1,
-          backgroundColor: "#1e213a",
-        }}
-      >
+      <SafeAreaView style={styles.container}>
         <Search
           inputValue={inputValue}
           setInputValue={setInputValue}

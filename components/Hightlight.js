@@ -19,7 +19,6 @@ export default function Hightlight({ title, data, unit, icon }) {
       <View
         style={{
           padding: 10,
-
           marginTop: 10,
         }}
       >

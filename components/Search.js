@@ -59,7 +59,7 @@ export default function Search({
               useFetchDataOnSearch(
                 setData,
                 setErrorMessage,
-                inputValue,
+                inputValue.trim(),
                 setLoading
               );
             }

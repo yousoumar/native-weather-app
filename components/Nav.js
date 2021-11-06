@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Pressable, Text } from "react-native";
+import { View, Pressable, Text, StyleSheet } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 export default function Nav({
   setInputValue,
@@ -11,39 +11,19 @@ export default function Nav({
   setLoading,
 }) {
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        justifyContent: "space-between",
-
-        width: "100%",
-        paddingLeft: 16,
-        paddingRight: 16,
-        paddingTop: 16,
-      }}
-    >
+    <View style={styles.container}>
       <Pressable
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "hsla(230,5%,45%,.3)",
-          padding: 10,
-          borderRadius: 10,
-        }}
+        style={styles.largeButton}
         onPress={() => {
           setShowSearch(!showSearch);
         }}
       >
         <View>
-          <Text style={{ color: "white" }}>Chercher une ville</Text>
+          <Text style={styles.text}>Chercher une ville</Text>
         </View>
       </Pressable>
       <Pressable
-        style={{
-          padding: 10,
-          borderRadius: 50,
-          backgroundColor: "hsla(230,5%,45%,.3)",
-        }}
+        style={styles.roundButton}
         onPress={() => {
           setInputValue("");
           setLoading(true);
@@ -58,3 +38,26 @@ export default function Nav({
     </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 16,
+  },
+  largeButton: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "hsla(230,5%,45%,.3)",
+    padding: 10,
+    borderRadius: 10,
+  },
+  roundButton: {
+    padding: 10,
+    borderRadius: 50,
+    backgroundColor: "hsla(230,5%,45%,.3)",
+  },
+  text: { color: "white" },
+});
