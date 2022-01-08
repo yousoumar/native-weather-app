@@ -17,7 +17,7 @@ const useFetchDataOnSearch = async (
     } else {
       setLoading(false);
       setErrorMessage(
-        "La ville que vous cherchez nous travaillons dessus encore, merci d'essayer une autre :)"
+        "The city you are looking for we are still working on it, please try another :)"
       );
       return;
     }

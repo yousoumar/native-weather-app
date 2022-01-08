@@ -4,6 +4,9 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import Highlights from "./Highlights";
 
 export default function MainInfo({ data }) {
+  if (!data) {
+    return null;
+  }
   return (
     <View style={styles.container}>
       <Image

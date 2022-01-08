@@ -4,11 +4,11 @@
     "slug": "weather",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/favicon.png",
+    "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1e213a"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -26,8 +26,9 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     },
-    "description": "A weather app made with React Native for learning purpose."
+    "description": "A weather app made with React Native for learning purpose.",
+    "githubUrl": "https://github.com/yousoumar/weather-app"
   }
 }
