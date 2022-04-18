@@ -4,6 +4,9 @@ Mobile Weather app carried out with `React native`. The data, quite approximate,
 
 # Overview
 
-You can test it by clicking on the link above, in the `Github` about section. With the hope that, some one will find something interesting in this repository, it was your unknown friend !😉
+The easiest way to test the application is:
+
+1. Install [Expo Go](https://expo.dev/client) on your mobile phone form Apple or Google Store.
+2. Go to this [link](https://expo.dev/@yousoumar/weather) and scan the QR code.
 
 <img src = "assets/screenshot.png"/>
